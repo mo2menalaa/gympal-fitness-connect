@@ -16,7 +16,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 const CoachDashboard = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("clients");
-  const [isOpen, setIsOpen] = useState(false);
+  const [openProgramId, setOpenProgramId] = useState<number | null>(null);
 
   // Mock data for demonstration
   const clients = [
@@ -203,7 +203,11 @@ const CoachDashboard = () => {
                   ) : (
                     <ul className="space-y-4">
                       {programs.map((program) => (
-                        <Collapsible key={program.id} open={program.id === isOpen} onOpenChange={() => setIsOpen(program.id === isOpen ? false : program.id)}>
+                        <Collapsible 
+                          key={program.id} 
+                          open={openProgramId === program.id} 
+                          onOpenChange={() => setOpenProgramId(openProgramId === program.id ? null : program.id)}
+                        >
                           <CollapsibleTrigger asChild>
                             <div className="bg-white p-4 rounded-md border cursor-pointer hover:bg-gray-50 transition-colors">
                               <div className="flex items-center justify-between">
