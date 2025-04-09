@@ -33,7 +33,7 @@ const OnboardingSteps = ({ onComplete }: OnboardingStepsProps) => {
     
     // Budget & Food
     budget: 'medium',
-    favoriteFoods: [] as string,
+    favoriteFoods: [] as string[], // Fixed: changed from `[] as string` to `[] as string[]`
   });
 
   const updateFormData = (field: string, value: any) => {
