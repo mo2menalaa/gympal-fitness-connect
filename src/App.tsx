@@ -9,6 +9,9 @@ import Auth from "./pages/Auth";
 import UserOnboarding from "./pages/UserOnboarding";
 import CoachDiscovery from "./pages/CoachDiscovery";
 import Dashboard from "./pages/Dashboard";
+import CoachDashboard from "./pages/CoachDashboard";
+import ModeratorDashboard from "./pages/ModeratorDashboard";
+import CoachSetup from "./pages/CoachSetup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/onboarding" element={<UserOnboarding />} />
           <Route path="/coaches" element={<CoachDiscovery />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/coach/dashboard" element={<CoachDashboard />} />
+          <Route path="/coach/setup" element={<CoachSetup />} />
+          <Route path="/moderator/dashboard" element={<ModeratorDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

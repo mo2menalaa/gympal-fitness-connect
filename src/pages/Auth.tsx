@@ -27,9 +27,10 @@ const Auth = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const initialTab = queryParams.get('signup') === 'true' ? 'signup' : 'signin';
   const initialRole = queryParams.get('role') || 'user';
 
-  const [authType, setAuthType] = useState<'signin' | 'signup'>('signin');
+  const [authType, setAuthType] = useState<'signin' | 'signup'>(initialTab as 'signin' | 'signup');
   const [selectedRole, setSelectedRole] = useState(initialRole);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,8 +55,6 @@ const Auth = () => {
           navigate('/coach/setup');
         } else if (selectedRole === 'moderator') {
           navigate('/moderator/dashboard');
-        } else if (selectedRole === 'admin') {
-          navigate('/admin/dashboard');
         }
       } else {
         // Sign in - for demo purposes, redirect based on role
@@ -65,8 +64,6 @@ const Auth = () => {
           navigate('/coach/dashboard');
         } else if (selectedRole === 'moderator') {
           navigate('/moderator/dashboard');
-        } else if (selectedRole === 'admin') {
-          navigate('/admin/dashboard');
         }
       }
     } catch (err) {
