@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { User, Dumbbell, HeadsetHelp, ShieldAlert } from 'lucide-react';
+import { User, Dumbbell, Headphones, ShieldAlert } from 'lucide-react';
 
 interface RoleSelectorProps {
   selectedRole: string;
@@ -26,7 +26,7 @@ const RoleSelector = ({ selectedRole, onRoleSelect }: RoleSelectorProps) => {
       id: 'moderator',
       name: 'Moderator',
       description: 'Support staff for coaches',
-      icon: HeadsetHelp,
+      icon: Headphones,
     },
     {
       id: 'admin',
