@@ -6,7 +6,8 @@ import {
   Menu,
   X,
   User,
-  ChevronDown
+  ChevronDown,
+  UserPlus
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -55,11 +56,20 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/auth">
-                <Button variant="default" className="bg-gympal-blue hover:bg-gympal-blue/90">
-                  Sign In
-                </Button>
-              </Link>
+              <div className="flex items-center space-x-3">
+                <Link to="/auth">
+                  <Button variant="outline" className="border-gympal-blue text-gympal-blue hover:bg-gympal-blue hover:text-white">
+                    <User size={18} className="mr-1" />
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/auth?signup=true">
+                  <Button variant="default" className="bg-gympal-blue hover:bg-gympal-blue/90">
+                    <UserPlus size={18} className="mr-1" />
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
 
@@ -114,14 +124,24 @@ const Navbar = () => {
                   </button>
                 </>
               ) : (
-                <Link 
-                  to="/auth"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Button variant="default" className="w-full bg-gympal-blue hover:bg-gympal-blue/90">
-                    Sign In
-                  </Button>
-                </Link>
+                <>
+                  <Link 
+                    to="/auth"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center space-x-2 text-gray-700 hover:text-gympal-blue font-medium transition"
+                  >
+                    <User size={18} />
+                    <span>Sign In</span>
+                  </Link>
+                  <Link 
+                    to="/auth?signup=true"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center space-x-2 text-gray-700 hover:text-gympal-blue font-medium transition"
+                  >
+                    <UserPlus size={18} />
+                    <span>Sign Up</span>
+                  </Link>
+                </>
               )}
             </div>
           </div>
