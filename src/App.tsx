@@ -13,6 +13,7 @@ import CoachDashboard from "./pages/CoachDashboard";
 import ModeratorDashboard from "./pages/ModeratorDashboard";
 import CoachSetup from "./pages/CoachSetup";
 import NotFound from "./pages/NotFound";
+import AuthRoute from "./components/AuthRoute";
 
 const queryClient = new QueryClient();
 
@@ -23,15 +24,29 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/onboarding" element={<UserOnboarding />} />
-          <Route path="/coaches" element={<CoachDiscovery />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/coach/dashboard" element={<CoachDashboard />} />
-          <Route path="/coach/setup" element={<CoachSetup />} />
-          <Route path="/moderator/dashboard" element={<ModeratorDashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* User Routes */}
+          <Route element={<AuthRoute requiredRole="user" />}>
+            <Route path="/onboarding" element={<UserOnboarding />} />
+            <Route path="/coaches" element={<CoachDiscovery />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          
+          {/* Coach Routes */}
+          <Route element={<AuthRoute requiredRole="coach" />}>
+            <Route path="/coach/dashboard" element={<CoachDashboard />} />
+            <Route path="/coach/setup" element={<CoachSetup />} />
+          </Route>
+          
+          {/* Moderator Routes */}
+          <Route element={<AuthRoute requiredRole="moderator" />}>
+            <Route path="/moderator/dashboard" element={<ModeratorDashboard />} />
+          </Route>
+          
+          {/* Catch All */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
